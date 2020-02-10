@@ -1,0 +1,26 @@
+import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+
+import Message from '../components/message';
+
+class MessageList extends Component {
+  render() {
+    return (
+      <div>
+        {
+          this.props.messages.map((message) => {
+            return <Message key={message.id} message={message} />;
+          })
+        }
+      </div>
+    );
+  }
+}
+
+// function mapStateToProps(state) {
+//   return {
+//     messages: state.messages
+//   }
+// }
+
+export default MessageList;
