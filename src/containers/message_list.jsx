@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import Message from '../components/message';
 
@@ -9,7 +9,7 @@ class MessageList extends Component {
       <div>
         {
           this.props.messages.map((message) => {
-            return <Message key={message.id} message={message} />;
+            return <Message key={message.author} message={message} />;
           })
         }
       </div>
@@ -17,10 +17,10 @@ class MessageList extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     messages: state.messages
-//   }
-// }
+function mapStateToProps(state) {
+  return {
+    messages: state.messages
+  }
+}
 
-export default MessageList;
+export default connect(mapStateToProps)(MessageList);
