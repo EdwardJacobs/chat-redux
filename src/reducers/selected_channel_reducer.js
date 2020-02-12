@@ -1,4 +1,3 @@
-
 import { CHANNEL_SELECTED } from '../actions';
 
 export default function(state = null, action) {
