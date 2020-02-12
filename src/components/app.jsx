@@ -16,7 +16,7 @@ const messages = [
 
 const App = () => {
   return (
-    <div className="app">
+    <div className="messaging-wrapper">
       <MessageList messages={messages} />
     </div>
   );

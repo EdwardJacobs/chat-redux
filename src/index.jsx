@@ -28,9 +28,10 @@ const reducers = combineReducers({
   channels: identityReducer,
   currentUser: identityReducer,
   selectedChannel: selectedChannelReducer
-})
+});
 
-const store = createStore(reducers, initialState);
+const middlewares = applyMiddleware(reduxPromise, logger);
+const store = createStore(reducers, initialState, middlewares);
 
 // render an instance of the component in the DOM
 ReactDOM.render(
