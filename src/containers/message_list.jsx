@@ -11,6 +11,18 @@ class MessageList extends Component {
     this.fetchMessages();
   }
 
+  componentDidMount() {
+    this.refresher = setInterval(this.fetchMessages, 5000);
+  }
+
+  componentDidUpdate() {
+    this.list.scrollTop = this.scrollHeight
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.refresher);
+  }
+
   fetchMessages = () => {
     this.props.fetchMessages(this.props.selectedChannel);
   }
@@ -29,7 +41,7 @@ class MessageList extends Component {
         <div className="channel-title">
           <span>Channel #{this.props.selectedChannel}</span>
         </div>
-        <div className="channel-content">
+        <div className="channel-content" ref={(list) => { this.list = list; }}>
           {this.renderList()}
         </div>
         <MessageForm />
