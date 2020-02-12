@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { fetchMessages } from '../actions';
 import Message from '../components/message';
+import MessageForm from '../containers/message_form';
 
 class MessageList extends Component {
   componentWillMount() {
@@ -25,9 +26,13 @@ class MessageList extends Component {
   render () {
     return (
       <div className="channel-container">
+        <div className="channel-title">
+          <span>Channel #{this.props.selectedChannel}</span>
+        </div>
         <div className="channel-content">
           {this.renderList()}
         </div>
+        <MessageForm />
       </div>
     );
   }
