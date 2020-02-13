@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { fetchMessages } from '../actions';
 import Message from '../components/message';
@@ -11,20 +11,28 @@ class MessageList extends Component {
     this.fetchMessages();
   }
 
-  componentDidMount() {
-    this.refresher = setInterval(this.fetchMessages, 5000);
-  }
+  // componentDidMount() {
+  //   this.refresher = setInterval(this.fetchMessages, 5000);
+  // }
 
   componentDidUpdate() {
-    this.list.scrollTop = this.list.scrollHeight;
+    this.list.scrollTop = this.scrollHeight;
   }
 
-  componentWillUnmount() {
-    clearInterval(this.refresher);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.refresher);
+  // }
 
   fetchMessages = () => {
     this.props.fetchMessages(this.props.selectedChannel);
+  }
+
+  renderList() {
+    return this.props.messages.map((message) => {
+      return (
+        <Message key={message.id} message={message} />
+      );
+    });
   }
 
   render () {
@@ -34,11 +42,7 @@ class MessageList extends Component {
           <span>Channel #{this.props.selectedChannel}</span>
         </div>
         <div className="channel-content" ref={(list) => { this.list = list; }}>
-          {
-            this.props.messages.map((message) => {
-              return <Message key={message.id} message={message} />;
-            })
-          }
+          {this.renderList()}
         </div>
         <MessageForm />
       </div>
@@ -48,8 +52,7 @@ class MessageList extends Component {
 
 function mapStateToProps(state) {
   return {
-    messages: state.messages,
-    selectedChannel: state.selectedChannel
+    messages: state.messages
   };
 }
 

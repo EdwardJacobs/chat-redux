@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchMessages, selectChannel } from '../actions/index';
+import { selectChannel, fetchMessages } from '../actions/index';
 
 class ChannelList extends Component {
   componentWillReceiveProps(nextProps) {
@@ -22,7 +22,7 @@ class ChannelList extends Component {
         onClick={() => this.handleClick(channel)}
         role="presentation"
       >
-      #{channel}
+        #{channel}
       </li>
     );
   }

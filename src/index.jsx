@@ -14,14 +14,14 @@ import '../assets/stylesheets/application.scss';
 import messagesReducer from './reducers/messages_reducer';
 import selectedChannelReducer from './reducers/selected_channel_reducer';
 
-const identityReducer = (state = null) => state;
-
 const initialState = {
   messages: [],
   channels: ['general', 'react', 'paris'],
-  currentUser: prompt("What is your username?") || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
+  currentUser: prompt("What is your username") || `anonymouse${Math.floor(10 + (Math.random() * 90))}`,
   selectedChannel: 'general'
-};
+}
+
+const identityReducer = (state = null) => state;
 
 const reducers = combineReducers({
   messages: messagesReducer,
@@ -30,7 +30,6 @@ const reducers = combineReducers({
   selectedChannel: selectedChannelReducer
 });
 
-// Middlewares
 const middlewares = applyMiddleware(reduxPromise, logger);
 const store = createStore(reducers, initialState, middlewares);
 

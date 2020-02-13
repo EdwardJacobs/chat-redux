@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { createMessage } from '../actions/index';
 
 class MessageForm extends Component {
   constructor(props) {
     super(props);
     this.state = { value: '' };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     this.messageBox.focus();
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ value: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.props.createMessage(this.props.selectedChannel, this.props.currentUser, this.state.value);
     this.setState({ value: '' });
