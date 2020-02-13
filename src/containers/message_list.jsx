@@ -11,17 +11,17 @@ class MessageList extends Component {
     this.fetchMessages();
   }
 
-  componentDidMount() {
-    this.refresher = setInterval(this.fetchMessages, 5000);
-  }
+  // componentDidMount() {
+  //   this.refresher = setInterval(this.fetchMessages, 5000);
+  // }
 
   componentDidUpdate() {
-    this.list.scrollTop = this.scrollHeight
+    this.list.scrollTop = this.scrollHeight;
   }
 
-  componentWillUnmount() {
-    clearInterval(this.refresher);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.refresher);
+  // }
 
   fetchMessages = () => {
     this.props.fetchMessages(this.props.selectedChannel);
@@ -30,7 +30,7 @@ class MessageList extends Component {
   renderList() {
     return this.props.messages.map((message) => {
       return (
-        <Message key={message.author} message={message} />
+        <Message key={message.id} message={message} />
       );
     });
   }
