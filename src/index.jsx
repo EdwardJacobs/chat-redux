@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import logger from 'redux-logger';
 import reduxPromise from 'redux-promise';
 
@@ -19,7 +19,7 @@ const initialState = {
   channels: ['general', 'react', 'paris'],
   currentUser: prompt("What is your username") || `anonymouse${Math.floor(10 + (Math.random() * 90))}`,
   selectedChannel: 'general'
-}
+};
 
 const identityReducer = (state = null) => state;
 
@@ -30,7 +30,8 @@ const reducers = combineReducers({
   selectedChannel: selectedChannelReducer
 });
 
-const middlewares = applyMiddleware(reduxPromise, logger);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middlewares = composeEnhancers(applyMiddleware(reduxPromise));
 const store = createStore(reducers, initialState, middlewares);
 
 // render an instance of the component in the DOM
