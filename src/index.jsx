@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import logger from 'redux-logger';
 import reduxPromise from 'redux-promise';
 
 // internal modules
